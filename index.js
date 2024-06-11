@@ -1,6 +1,7 @@
 import express from 'express';
 import authRouter from './routes/authRouter.js';
 import taskRouter from './routes/taskRouter.js';
+import cors from 'cors';
 
 const port = 8080;
 
@@ -15,7 +16,9 @@ const app = express();
 app.use(express.urlencoded({
     extended: true
 }))
-
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 // Routes
 app.use('/',authRouter);
 app.use('/task/',taskRouter);
